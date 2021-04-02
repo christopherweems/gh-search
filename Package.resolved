@@ -11,12 +11,48 @@
         }
       },
       {
+        "package": "swift-algorithms",
+        "repositoryURL": "https://github.com/apple/swift-algorithms.git",
+        "state": {
+          "branch": null,
+          "revision": "4cca4895cc65743c32ddd9a59d7663f8b058ac16",
+          "version": "0.0.4"
+        }
+      },
+      {
         "package": "swift-argument-parser",
         "repositoryURL": "https://github.com/apple/swift-argument-parser.git",
         "state": {
           "branch": null,
           "revision": "831ed5e860a70e745bc1337830af4786b2576881",
           "version": "0.4.1"
+        }
+      },
+      {
+        "package": "swift-numerics",
+        "repositoryURL": "https://github.com/apple/swift-numerics",
+        "state": {
+          "branch": null,
+          "revision": "6583ac70c326c3ee080c1d42d9ca3361dca816cd",
+          "version": "0.1.0"
+        }
+      },
+      {
+        "package": "triple-q",
+        "repositoryURL": "https://github.com/christopherweems/triple-q.git",
+        "state": {
+          "branch": null,
+          "revision": "f58dac700310b3c240ba7ab69284444fef7b580a",
+          "version": "0.0.1"
+        }
+      },
+      {
+        "package": "unstandard",
+        "repositoryURL": "https://github.com/christopherweems/unstandard.git",
+        "state": {
+          "branch": null,
+          "revision": "a3426672789b295a3c199c81e36e40f4f1e45e95",
+          "version": "0.1.6"
         }
       }
     ]
