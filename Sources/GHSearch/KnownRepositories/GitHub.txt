@@ -1,0 +1,25 @@
+// Comment lines begin with a double slash
+
+/apple/swift
+/apple/swift-algorithms
+/apple/swift-argument-parser
+/apple/swift-atomics
+/apple/swift-crypto
+/apple/swift-driver
+/apple/swift-evolution
+/apple/swift-format
+/apple/swift-log
+/apple/swift-http-structured-headers
+/apple/swift-nio
+/apple/swift-nio-extras
+/apple/swift-nio-http2
+/apple/swift-nio-ssh
+/apple/swift-nio-ssl
+/apple/swift-numerics
+/apple/swift-metrics
+/apple/swift-syntax
+/apple/swift-system
+
+/christopherweems/bonanas
+/christopherweems/Resultto
+/christopherweems/unstandard
