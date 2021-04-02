@@ -9,6 +9,10 @@ import Foundation
 struct Search: ParsableCommand {
     private static let knownRepositories = KnownRepositories(platform: .github)
     
+    public static let configuration = CommandConfiguration(
+        commandName: "gh"
+    )
+    
     @Argument(help: "The name of the GitHub repository to search for")
     var repositoryName: String
     
