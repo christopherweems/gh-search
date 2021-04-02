@@ -13,29 +13,31 @@ public struct KnownRepositories {
     }
     
     private let platform: Platform
+    private let repositoryPaths: [String : String]
     
     @SingleResult public subscript(query: String) -> URL? {
         let normalizedQuery = query.lowercased()
         
         switch platform {
         case .github:
-            Self.gitHubRepositoryPaths[normalizedQuery]
+            repositoryPaths[normalizedQuery]
                 .flatMap { URL(string: "https://github.com" + $0) }
             
         }
     }
     
     public init(platform: Platform) {
-        precondition(platform == .github, "Only GitHub platform currently supported")
+        precondition(platform == .github, "Only GitHub platform is currently supported")
         self.platform = platform
+        self.repositoryPaths = Self.repositoryPaths(for: platform)
         
     }
     
 }
 
 private extension KnownRepositories {
-    static let gitHubRepositoryPaths: [String : String] = {
-        let repositoryPaths = try? Bundle.module.url(forResource: "GitHub", withExtension: "txt")
+    static func repositoryPaths(for platform: Platform) -> [String : String] {
+        let repositoryPaths = try? Bundle.module.url(forResource: platform.rawValue, withExtension: "txt")
             .map { try Data(contentsOf: $0) }
             .map { String(data: $0, encoding: .utf8) }
             .flatMap { $0?.components(separatedBy: .newlines) }?
@@ -46,6 +48,6 @@ private extension KnownRepositories {
             .map { ($1, $1.suffix(from: $0).asString()) }
             .assert({ $0.allUnique(on: \.0) }, "duplicate repositories exist in paths file")
             .wrap { Dictionary(uniqueValuesWithKeys: $0) } ?? [:]
-    }()
+    }
     
 }
