@@ -1,12 +1,14 @@
 //  KnownRepositories.swift
 //  Created by Christopher Weems on 4/2/21
 
+import Algorithms
 import Foundation
 import Resultto
+import unstandard
 
 public struct KnownRepositories {
-    public enum Platform {
-        case github
+    public enum Platform: String {
+        case github = "GitHub"
         
     }
     
@@ -32,29 +34,18 @@ public struct KnownRepositories {
 }
 
 private extension KnownRepositories {
-    static let gitHubRepositoryPaths = [
-        "swift" : "/apple/swift",
-        "swift-algorithms" : "/apple/swift-algorithms",
-        "swift-argument-parser" : "/apple/swift-argument-parser",
-        "swift-atomics" : "/apple/swift-atomics",
-        "swift-crypto" : "/apple/swift-crypto",
-        "swift-driver" : "/apple/swift-driver",
-        "swift-evolution" : "/apple/swift-evolution",
-        "swift-format" : "/apple/swift-format",
-        "swift-log" : "/apple/swift-log",
-        "swift-http-structured-headers" : "/apple/swift-http-structured-headers",
-        "swift-nio" : "/apple/swift-nio",
-        "swift-nio-extras" : "/apple/swift-nio-extras",
-        "swift-nio-ssl" : "/apple/swift-nio-ssl",
-        "swift-nio-http2" : "/apple/swift-nio-http2",
-        "swift-numerics" : "/apple/swift-numerics",
-        "swift-metrics" : "/apple/swift-metrics",
-        "swift-syntax" : "/apple/swift-syntax",
-        "swift-system" : "/apple/swift-system",
+    static let gitHubRepositoryPaths: [String : String] = {
+        let repositoryPaths = try? Bundle.module.url(forResource: "GitHub", withExtension: "txt")
+            .map { try Data(contentsOf: $0) }
+            .map { String(data: $0, encoding: .utf8) }
+            .flatMap { $0?.components(separatedBy: .newlines) }?
+            .filter { !$0.isEmpty && !$0.hasPrefix("//") }
         
-        "bonanas" : "/christopherweems/bonanas",
-        "resultto" : "/christopherweems/Resultto",
-        "unstandard" : "/christopherweems/unstandard"
-    ]
+        return repositoryPaths?
+            .map { ($0.index(afterLastIndexOf: "/") ?? $0.startIndex, $0) }
+            .map { ($1, $1.suffix(from: $0).asString()) }
+            .assert({ $0.allUnique(on: \.0) }, "duplicate repositories exist in paths file")
+            .wrap { Dictionary(uniqueValuesWithKeys: $0) } ?? [:]
+    }()
     
 }
