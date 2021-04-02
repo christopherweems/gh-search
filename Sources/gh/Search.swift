@@ -13,10 +13,10 @@ struct Search: ParsableCommand {
         commandName: "gh"
     )
     
-    @Argument(help: "The name of the GitHub repository to search for")
+    @Argument(help: "The name of the GitHub repository to find")
     var repositoryName: String
     
-    @Flag(help: "Ignore known redirect for well known repositories")
+    @Flag(help: "Ignore known redirect for well known repositories.")
     var disableKnownRepositoryRedirect = false
     private var allowKnownRepositoryRedirect: Bool { !disableKnownRepositoryRedirect }
     
