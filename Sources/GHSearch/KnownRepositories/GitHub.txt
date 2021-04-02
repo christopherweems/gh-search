@@ -8,15 +8,16 @@
 /apple/swift-driver
 /apple/swift-evolution
 /apple/swift-format
-/apple/swift-log
 /apple/swift-http-structured-headers
+/apple/swift-log
+/apple/swift-metrics
 /apple/swift-nio
 /apple/swift-nio-extras
 /apple/swift-nio-http2
 /apple/swift-nio-ssh
 /apple/swift-nio-ssl
 /apple/swift-numerics
-/apple/swift-metrics
+/apple/swift-package-manager
 /apple/swift-syntax
 /apple/swift-system
 
