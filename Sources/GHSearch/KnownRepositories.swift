@@ -12,24 +12,23 @@ public struct KnownRepositories {
         
     }
     
-    private let platform: Platform
     private let repositoryPaths: [String : String]
     
     @SingleResult public subscript(query: String) -> URL? {
         let normalizedQuery = query.lowercased()
         
-        switch platform {
-        case .github:
-            repositoryPaths[normalizedQuery]
-                .flatMap { URL(string: "https://github.com" + $0) }
-            
-        }
+        repositoryPaths[normalizedQuery]
+            .flatMap { URL(string: "https://github.com" + $0) }
     }
     
     public init(platform: Platform) {
         precondition(platform == .github, "Only GitHub platform is currently supported")
-        self.platform = platform
         self.repositoryPaths = Self.repositoryPaths(for: platform)
+        
+    }
+    
+    public init(repositoryPathsFileURL: URL) {
+        self.repositoryPaths = Self.repositoryPaths(for: repositoryPathsFileURL)
         
     }
     
@@ -37,10 +36,17 @@ public struct KnownRepositories {
 
 private extension KnownRepositories {
     static func repositoryPaths(for platform: Platform) -> [String : String] {
-        let repositoryPaths = try? Bundle.module.url(forResource: platform.rawValue, withExtension: "txt")
-            .map { try Data(contentsOf: $0) }
-            .map { String(data: $0, encoding: .utf8) }
-            .flatMap { $0?.components(separatedBy: .newlines) }?
+        Bundle.module.url(forResource: platform.rawValue, withExtension: "txt")
+            .map { repositoryPaths(for: $0) } ?? [:]
+    }
+    
+    static func repositoryPaths(for pathFileURL: URL) -> [String : String] {
+        precondition(pathFileURL.pathExtension == "txt")
+        
+        let repositoryPaths = try? pathFileURL
+            .wrap { try Data(contentsOf: $0) }
+            .wrap { String(data: $0, encoding: .utf8) }
+            .flatMap { $0.components(separatedBy: .newlines) }?
             .filter { !$0.isEmpty && !$0.hasPrefix("//") }
         
         return repositoryPaths?
