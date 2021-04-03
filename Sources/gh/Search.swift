@@ -7,7 +7,14 @@ import Foundation
 
 @main
 struct Search: ParsableCommand {
-    private static let knownRepositories = KnownRepositories(platform: .github)
+    private lazy var knownRepositories: KnownRepositories = {
+        if let knownRepositoriesPathURL = self.knownRepositoriesPath.flatMap(URL.init(fileURLWithPath:)) {
+            return KnownRepositories(repositoryPathsFileURL: knownRepositoriesPathURL)
+            
+        } else {
+            return KnownRepositories(platform: .github)
+        }
+    }()
     
     public static let configuration = CommandConfiguration(
         commandName: "gh"
@@ -20,10 +27,13 @@ struct Search: ParsableCommand {
     var disableKnownRepositoryRedirect = false
     private var allowKnownRepositoryRedirect: Bool { !disableKnownRepositoryRedirect }
     
+    @Option(help: "The path of your known repositories text file")
+    var knownRepositoriesPath: String?
+    
     mutating func run() throws {
         let url: URL
         
-        if allowKnownRepositoryRedirect, let knownURL = Self.knownRepositories[repositoryName] {
+        if allowKnownRepositoryRedirect, let knownURL = knownRepositories[repositoryName] {
             url = knownURL
             
         } else if let repositorySearchURL = self.repositorySearchURL {
