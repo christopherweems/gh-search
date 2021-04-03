@@ -19,7 +19,7 @@ let package = Package(
         .package(url: "https://github.com/apple/swift-algorithms.git", .upToNextMajor(from: "0.0.4")),
         .package(url: "https://github.com/apple/swift-argument-parser.git", .upToNextMajor(from: "0.4.1")),
         .package(url: "https://github.com/christopherweems/Resultto.git", .upToNextMajor(from: "0.1.1")),
-        .package(url: "https://github.com/christopherweems/unstandard.git", .upToNextMajor(from: "0.1.6")),
+        .package(url: "https://github.com/christopherweems/unstandard.git", .upToNextMajor(from: "0.1.7")),
         
     ],
     targets: [
