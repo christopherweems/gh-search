@@ -6,8 +6,8 @@
         "repositoryURL": "https://github.com/christopherweems/Resultto.git",
         "state": {
           "branch": null,
-          "revision": "9069c748af9a6ce8a0bbd9d5493a90649fdb94b8",
-          "version": "0.1.1"
+          "revision": "cf7d988f51bbe0086dd6d626082775ee1a7f1d6b",
+          "version": "0.1.2"
         }
       },
       {
@@ -15,8 +15,8 @@
         "repositoryURL": "https://github.com/apple/swift-algorithms.git",
         "state": {
           "branch": null,
-          "revision": "4cca4895cc65743c32ddd9a59d7663f8b058ac16",
-          "version": "0.0.4"
+          "revision": "2327673b0e9c7e90e6b1826376526ec3627210e4",
+          "version": "0.2.1"
         }
       },
       {
@@ -24,8 +24,17 @@
         "repositoryURL": "https://github.com/apple/swift-argument-parser.git",
         "state": {
           "branch": null,
-          "revision": "831ed5e860a70e745bc1337830af4786b2576881",
-          "version": "0.4.1"
+          "revision": "83b23d940471b313427da226196661856f6ba3e0",
+          "version": "0.4.4"
+        }
+      },
+      {
+        "package": "swift-collections",
+        "repositoryURL": "https://github.com/apple/swift-collections.git",
+        "state": {
+          "branch": null,
+          "revision": "9d8719c8bebdc79740b6969c912ac706eb721d7a",
+          "version": "0.0.7"
         }
       },
       {
@@ -51,8 +60,8 @@
         "repositoryURL": "https://github.com/christopherweems/unstandard.git",
         "state": {
           "branch": null,
-          "revision": "b2bedeeafcac89f78ac98688ff807abc06bf8efa",
-          "version": "0.1.7"
+          "revision": "3f00304656959d9908df22656259e10ea347ead3",
+          "version": "0.2.5"
         }
       }
     ]
